@@ -27,6 +27,37 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## VUE实例
 
+  ### 数据属性
+
+  创建实例时，vue响应式系统中加入了data对象中所有的属性，当属性值发生改变时，视图将会作出响应，重新渲染，匹配更新<br>
+  **只有实例被创建时data中存在的属性才是响应式的**<br>
+    Object.freeze()阻止修改现有属性，响应系统无法再追踪变化<br>
+
+    ```
+      var obj = { a: 1 }
+      Object.freeze(obj)
+
+      new Vue({
+        el: '#app'
+        data: obj
+      }) // 此时无法追踪变化
+    ```
+
+  ### 实例属性与方法: 有前缀 '$'
+
+  ### 生命周期钩子
+
+  **不要在选项属性或回调上勇士箭头函数**<br>
+
+  #### 比如
+
+    ```
+      created: () => {}
+      或vm.$watch('a', (v) => this.mymethod())
+    ```
+  因为箭头函数适合伏击上下文绑定在一起的，this，不会是如你所预期的Vue实例<br>
+  导致 Uncaught TypeError: Cannot read property of undefined 或 Uncaught TypeError: this.myMethod is not a function 之类的错误
+
 ## 计算属性
 
   computed：{}
@@ -50,6 +81,7 @@ filter，concat，slice不会改变原数组，但总是返回一个新数组。
 
 是非响应式的
 ===》解决：
+```
 / /Vue.set
 Vue.set(vm.items, indexOfItem, newValue)
 // Array.prototype.splice
@@ -58,10 +90,13 @@ vm.items.splice(indexOfItem, 1, newValue)
 vm.$set(vm.items, indexOfItem, newValue)
 // splice
 vm.items.splice(newLength)
+```
 
 
 ### 对象更改检测注意事项
 
 由于JavaScript限制Vue不能检测对象属性的添加或删除（非响应）
 
+## 侦听器
 
+  适用于当需要在数据变化时执行异步或者开销较大的操作时
