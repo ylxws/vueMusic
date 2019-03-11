@@ -50,7 +50,7 @@ filter，concat，slice不会改变原数组，但总是返回一个新数组。
 
 是非响应式的
 ===》解决：
-`
+```
 / /Vue.set
 Vue.set(vm.items, indexOfItem, newValue)
 // Array.prototype.splice
@@ -59,7 +59,7 @@ vm.items.splice(indexOfItem, 1, newValue)
 vm.$set(vm.items, indexOfItem, newValue)
 // splice
 vm.items.splice(newLength)
-`
+```
 
 
 ### 对象更改检测注意事项
