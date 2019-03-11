@@ -4,6 +4,7 @@ import Recommend from 'components/recommend'
 import Singer from 'components/singer'
 import Rank from 'components/rank'
 import Search from 'components/search'
+import TimeLine from 'components/timeLine'
 
 Vue.use(Router)
 // 注册路由
@@ -13,6 +14,10 @@ export default new Router({
     {
       path: '/',
       component: Recommend
+    },
+    {
+      path: '/timeLine',
+      component: TimeLine
     },
     {
       path: '/recommend',
