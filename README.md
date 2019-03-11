@@ -27,8 +27,6 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 ## VUE实例
 
-``` bash
-
 ## 计算属性
 
   computed：{}
